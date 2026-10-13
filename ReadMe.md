@@ -273,14 +273,15 @@ The workflow included:
 5. Refactoring the project into a Maven multi-module structure.
 6. Adding the Jenkins pipeline.
 7. Adding the Kubernetes deployment and service manifests.
-8. Updating the README with the implementation details and evidence.
-9. Reviewing the commit history and merging the completed changes into `main`.
+8. Updated the README with the implementation details and project evidence.
+9. Verified the changes and reviewed the Git commit history.
+10. Merged the completed feature branch into `main`.
 
 ### Final Git Commit History
 
 The final Git history is included below to show the sequence of changes made during the project.
 
-![alt text](image.png)
+![Final Git commit and merge history](screenshots/final-git-history.png)
 
 ## 8. Project Evidence
 
