@@ -169,9 +169,12 @@ If the test stage fails, the pipeline does not proceed to the packaging stage.
 ### Jenkins Result
 
 The Jenkins build result and stage execution are shown below.
+#### Jenkins Build 
+![Successful Jenkins build Overview](screenshots/Jenkins_build.png)
+![Successful Jenkins build](screenshots/Jenkins_build_success.png)
 
-
-![Successful Jenkins pipeline](screenshots/jenkins-success.png)
+#### Jenkins Success Pipeline
+![Successful Jenkins pipeline](screenshots/Jenkins-success.png)
 
 ## 6. Kubernetes Deployment
 
