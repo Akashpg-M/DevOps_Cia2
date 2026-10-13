@@ -150,4 +150,47 @@ class RegistrationServiceTest {
         assertFalse(result);
         assertFalse(student.isRegistered("CS301"));
     }
+
+    @Test
+    void shouldRejectRegistrationWhenCourseIsFull() {
+
+        Student student = new Student("S102", "Rahul");
+
+        Course course = new Course(
+                "CS302",
+                "Operating Systems",
+                4,
+                2,
+                true,
+                null
+        );
+
+        RegistrationService service = new RegistrationService();
+
+        // Fill the course to its capacity.
+        course.incrementEnrollment();
+        course.incrementEnrollment();
+
+        // Record the student's initial state.
+        int initialCredits = student.getTotalCredits();
+        int initialEnrollment = course.getCurrentEnrollment();
+        int initialRegisteredCourses = student.getRegisteredCourses().size();
+
+        // Attempt registration when the course is already full.
+        boolean result = service.register(student, course);
+
+        // Registration must be rejected.
+        assertFalse(result);
+
+        // Rejection must not modify the student's state.
+        assertEquals(initialCredits, student.getTotalCredits());
+        assertEquals(
+                initialRegisteredCourses,
+                student.getRegisteredCourses().size()
+        );
+        assertFalse(student.isRegistered("CS302"));
+
+        // Rejection must not modify course enrollment.
+        assertEquals(initialEnrollment, course.getCurrentEnrollment());
+    }
 }
