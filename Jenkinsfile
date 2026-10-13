@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
-        PATH+JAVA17 = '/usr/lib/jvm/java-17-openjdk-amd64/bin'
+        PATH = "/usr/lib/jvm/java-17-openjdk-amd64/bin:${env.PATH}"
     }
 
     options {
