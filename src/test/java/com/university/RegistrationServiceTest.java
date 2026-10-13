@@ -193,4 +193,35 @@ class RegistrationServiceTest {
         // Rejection must not modify course enrollment.
         assertEquals(initialEnrollment, course.getCurrentEnrollment());
     }
+
+    @Test
+    void shouldAllowRegistrationWhenOneSeatRemains() {
+        Student student = new Student("S103", "Priya");
+
+        Course course = new Course(
+                "CS303",
+                "Database Systems",
+                4,
+                2,
+                true,
+                null
+        );
+
+        RegistrationService service = new RegistrationService();
+
+        // Fill all but one seat.
+        course.incrementEnrollment();
+
+        int initialCredits = student.getTotalCredits();
+        int initialRegisteredCourses = student.getRegisteredCourses().size();
+        int initialEnrollment = course.getCurrentEnrollment();
+
+        boolean result = service.register(student, course);
+
+        assertTrue(result);
+        assertEquals(initialCredits + 4, student.getTotalCredits());
+        assertEquals(initialRegisteredCourses + 1, student.getRegisteredCourses().size());
+        assertTrue(student.isRegistered("CS303"));
+        assertEquals(initialEnrollment + 1, course.getCurrentEnrollment());
+    }
 }
