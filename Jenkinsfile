@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        PATH+JAVA17 = '/usr/lib/jvm/java-17-openjdk-amd64/bin'
+    }
+
     options {
         timestamps()
     }
@@ -9,6 +14,22 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('Check Java and Maven') {
+            steps {
+                sh '''
+                    echo "JAVA_HOME=$JAVA_HOME"
+                    echo "Java version:"
+                    java -version
+
+                    echo "Java compiler version:"
+                    javac -version
+
+                    echo "Maven version:"
+                    mvn -version
+                '''
             }
         }
 
