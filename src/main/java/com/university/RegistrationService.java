@@ -2,7 +2,7 @@ package com.university;
 
 public class RegistrationService {
 
-    private static final int MAX_CREDITS = 20;
+    private static final int MAX_CREDITS = 24;
 
     public boolean register(Student student, Course course) {
 
